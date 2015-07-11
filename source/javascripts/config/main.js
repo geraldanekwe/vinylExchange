@@ -16,7 +16,8 @@ angular.module('vinyl')
       })
       .state('login', {
         url: '/login',
-        templateUrl: '/templates/login/login.html'
+        templateUrl: '/templates/login/login.html',
+        controller: 'mainCtrl'
       })
       .state('signup', {
         url: '/signup',

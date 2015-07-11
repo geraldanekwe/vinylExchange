@@ -25,7 +25,8 @@ angular.module('vinyl')
       })
       .state('login', {
         url: '/login',
-        templateUrl: '/templates/login/login.html'
+        templateUrl: '/templates/login/login.html',
+        controller: 'mainCtrl'
       })
       .state('signup', {
         url: '/signup',
@@ -59,6 +60,28 @@ angular.module('vinyl')
 'use strict';
 
 angular.module('vinyl')
-  .controller('mainCtrl', function($scope) {
+  .controller('mainCtrl', function($scope, $state, User) {
+    $scope.login = function() {
+      User.login($scope.user).success(function(data) {
+        $state.go('home');
+        console.log('working!!!');
+      }).
+      catch(function(error) {
+        console.log(error);
+        console.log('so sad');
+      });
+    }
 
+
+  });
+
+'use strict';
+
+angular.module('vinyl')
+  .service('User', function($http, urls) {
+
+    this.login = function(user) {
+
+      return $http.post(urls.apiUrl + "/login", user)
+    }
   });

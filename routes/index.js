@@ -14,10 +14,10 @@ var routes = function(passport) {
 
   router.post('/login',
     passport.authenticate('local', {
-      failureRedirect: '/login'
+      failureRedirect: '/'
     }),
     function(req, res) {
-      res.redirect('/');
+      res.json(req);
     });
 
   router.post('/signup',

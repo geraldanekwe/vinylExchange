@@ -4,7 +4,12 @@ var userSchema = mongoose.Schema({
   user: {
     email: String,
     username: String,
-    password: String
+    password: String,
+    inventory: [{
+      artist: String,
+      album: String,
+      year: String
+    }]
   }
 });
 

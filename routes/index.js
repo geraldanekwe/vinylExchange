@@ -13,20 +13,20 @@ var routes = function(passport) {
   });
 
   router.post('/login',
-    passport.authenticate('local'),
+    passport.authenticate('local', {
+      failureRedirect: '/login'
+    }),
     function(req, res) {
-      console.log(req);
-      // If this function gets called, authentication was successful.
-      // `req.user` contains the authenticated user.
-      res.json(req.user);
+      res.redirect('/');
     });
 
   router.post('/signup',
     function(req, res) {
       var user = new User(req.body);
-      user.email = req.body.email;
-      user.username = req.body.username;
-      user.password = req.body.password;
+      user.user.email = req.body.email;
+      user.user.username = req.body.username;
+      user.user.password = req.body.password;
+      console.log('req.body: ', user);
       user.save(function(err, savedUser) {
         if (err) {
           console.log(err);

@@ -13,11 +13,9 @@ var routes = function(passport) {
   });
 
   router.post('/login',
-    passport.authenticate('local', {
-      failureRedirect: '/'
-    }),
+    passport.authenticate('local'),
     function(req, res) {
-      res.json(req);
+      res.json(req.user);
     });
 
   router.post('/signup',
@@ -31,13 +29,15 @@ var routes = function(passport) {
         if (err) {
           console.log(err);
           res.status(400).json({
-            error: "Validation Failed"
+            error: 'Validation Failed'
           });
         }
-        console.log("savedUser:", savedUser);
+        console.log('savedUser:', savedUser);
         res.json(savedUser);
       });
     });
+
+  router.get('')
 
   return router;
 }

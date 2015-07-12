@@ -5,6 +5,7 @@ angular.module('vinyl')
     $scope.login = function() {
       User.login($scope.user).success(function(data) {
         $state.go('home');
+        console.log(data);
         console.log('working!!!');
       }).
       catch(function(error) {
